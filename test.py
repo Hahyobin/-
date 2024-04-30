@@ -288,8 +288,8 @@ def main():
     st.sidebar.markdown('<hr style="border:1px solid gray;">', unsafe_allow_html=True)
     st.sidebar.write('Select Model')
     use_z_score = st.sidebar.checkbox('Z-Score Normalization')
-    use_pca = st.sidebar.checkbox('PCA')
-    use_autoencoder = st.sidebar.checkbox('Autoencoder')
+    use_pca = st.sidebar.checkbox('Decision Tree')
+    use_autoencoder = st.sidebar.checkbox('SVM')
          
     if st.button('Training Start'):
         if not all_selected_files:
