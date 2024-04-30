@@ -229,7 +229,7 @@ def main():
                         file_name='Preprocessed data.csv', 
                         mime='text/csv'
                     )
-
+    st.subheader('종합설계프로젝트 3팀 - 국태용 교수님 ')
     st.header('1. Sensor')
     if st.button('Sensor ON'):
         st.write('센서 켜짐')
