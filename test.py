@@ -232,7 +232,7 @@ def main():
 
     st.header('1. Sensor')
     if st.button('Sensor ON'):
-        st.write('센서가 켜졌습니다.')
+        st.write('센서 켜짐')
     if all_selected_files and st.button('Check'):
         all_good = True
         for file_path in all_selected_files:
@@ -243,6 +243,8 @@ def main():
             st.success('All files successfully passed integrity testing')
 
     st.header('2. Visualisation')
+    if st.button('Visualisation'):
+        st.write('현재 상태 시각화해서 보여줌.')
     if all_selected_files:
         df = load_data(all_selected_files[0])
         df_preprocessed = preprocess_data(df)
