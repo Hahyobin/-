@@ -152,7 +152,7 @@ def plot_data(df, title):
     st.pyplot(fig)
     
 def main():
-    image_url = "3팀.png"
+    image_url = "3팀.jpg"
     st.image(image_url, use_column_width=True)    
     st.markdown("""
         <style>
@@ -164,7 +164,7 @@ def main():
                 font-style: italic;
             }
         </style>
-        <div class="title">종합설계프로젝트 3팀</div>
+        <div class="title">Smart window</div>
     """, unsafe_allow_html=True)
 
     # 사이드바 설정
@@ -230,8 +230,7 @@ def main():
                         mime='text/csv'
                     )
 
-    st.header('1. 센서 데이터 확인')
-    st.caption('센서 목록')
+    st.header('1. Sensor')
     if all_selected_files and st.button('Check'):
         all_good = True
         for file_path in all_selected_files:
@@ -242,7 +241,6 @@ def main():
             st.success('All files successfully passed integrity testing')
 
     st.header('2. Visualisation')
-    st.caption('데이터 시각화')
     if all_selected_files:
         df = load_data(all_selected_files[0])
         df_preprocessed = preprocess_data(df)
@@ -269,7 +267,7 @@ def main():
                 fig = create_scatter_plot(df, selected_columns)
                 st.pyplot(fig)
 
-    st.header('3. Model Training')
+    st.header('3. Test')
     st.sidebar.markdown('<hr style="border:1px solid gray;">', unsafe_allow_html=True)
     st.sidebar.write('Select Model')
     use_z_score = st.sidebar.checkbox('Z-Score Normalization')
