@@ -169,7 +169,7 @@ def main():
     
     st.markdown("""
         <style>
-            .subtitle {
+            .title {
                 font-size: 25px;
                 font-weight: bold;
                 color: white;
@@ -177,7 +177,7 @@ def main():
                 font-style: italic;
             }
         </style>
-        <div class="title">종합설계프로젝트 3팀 - 국태용 교수님</div>
+        <div class="subtitle">종합설계프로젝트 3팀 - 국태용 교수님</div>
     """, unsafe_allow_html=True)
     
     # 사이드바 설정
