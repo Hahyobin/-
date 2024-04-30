@@ -55,5 +55,51 @@ def send_command():
 st.title("아두이노 제어")
 st.button("센서 켜기", on_click=send_command)
 
+#---------------------------------------------------------------
 # 2. 센서 제어 - 웹사이트에 접속했을때 LED를 키고 끄는 코드
-# 이건 여기 적는거보다 노션에 올린 티스토리 링크 참고하는게 나을듯
+# 파일 이름: flaskTest.py
+from flask import Flask, render_template_string
+import RPi.GPIO as GPIO
+
+app = Flask(__name__)
+
+# GPIO 설정
+GPIO.setmode(GPIO.BCM)
+sensor_pin = 18
+GPIO.setup(sensor_pin, GPIO.OUT)
+
+# HTML 페이지 템플릿
+HTML = '''
+<!doctype html>
+<html>
+<head>
+<title>GPIO Control</title>
+</head>
+<body>
+    <h1>GPIO Control Interface</h1>
+    <button onclick="fetch('/on').then(response => response.text()).then(html => document.getElementById('status').innerHTML = html)">Turn ON</button>
+    <button onclick="fetch('/off').then(response => response.text()).then(html => document.getElementById('status').innerHTML = html)">Turn OFF</button>
+    <p id="status">Sensor is OFF</p>
+</body>
+</html>
+'''
+
+@app.route('/')
+def index():
+    return render_template_string(HTML)
+
+@app.route('/on')
+def gpio_on():
+    GPIO.output(sensor_pin, GPIO.HIGH)
+    return 'Sensor is ON'
+
+@app.route('/off')
+def gpio_off():
+    GPIO.output(sensor_pin, GPIO.LOW)
+    return 'Sensor is OFF'
+
+if __name__ == "__main__":
+    try:
+        app.run(host="0.0.0.0", port=8080)
+    finally:
+        GPIO.cleanup()  # 앱 종료 시 GPIO 핀을 초기화
