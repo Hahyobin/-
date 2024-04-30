@@ -231,8 +231,8 @@ def main():
                         mime='text/csv'
                     )
 
-    st.header('1. Data Integrity test')
-    st.caption('데이터 정합성 테스트')
+    st.header('1. 센서 데이터 확인')
+    st.caption('센서 목록')
     if all_selected_files and st.button('Check'):
         all_good = True
         for file_path in all_selected_files:
