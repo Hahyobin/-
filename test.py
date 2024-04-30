@@ -166,7 +166,20 @@ def main():
         </style>
         <div class="title">Smart window</div>
     """, unsafe_allow_html=True)
-
+    
+    st.markdown("""
+        <style>
+            .subtitle {
+                font-size: 25px;
+                font-weight: bold;
+                color: white;
+                text-align: center;
+                font-style: italic;
+            }
+        </style>
+        <div class="title">종합설계프로젝트 3팀 - 국태용 교수님</div>
+    """, unsafe_allow_html=True)
+    
     # 사이드바 설정
     st.sidebar.title("File and Settings")
     folder_path = st.sidebar.text_input('Folder Path', value='C:/Users/')
@@ -229,7 +242,7 @@ def main():
                         file_name='Preprocessed data.csv', 
                         mime='text/csv'
                     )
-    st.subheader('종합설계프로젝트 3팀 - 국태용 교수님 ')
+
     st.header('1. Sensor')
     if st.button('Sensor ON'):
         st.write('센서 켜짐')
