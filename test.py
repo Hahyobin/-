@@ -156,7 +156,7 @@ def main():
     st.image(image_url, use_column_width=True)    
     st.markdown("""
         <style>
-            .title {
+            .smart-window-title {
                 font-size: 50px;
                 font-weight: bold;
                 color: white;
@@ -164,20 +164,20 @@ def main():
                 font-style: italic;
             }
         </style>
-        <div class="title">Smart window</div>
+        <div class="smart-window-title">Smart window</div>
     """, unsafe_allow_html=True)
     
     st.markdown("""
         <style>
-            .title {
-                font-size: 15px;
+            .professor-title {
+                font-size: 10px;
                 font-weight: bold;
                 color: white;
                 text-align: center;
                 font-style: italic;
             }
         </style>
-        <div class="subtitle">종합설계프로젝트 3팀 - 국태용 교수님</div>
+        <div class="professor-title">종합설계프로젝트 3팀 - 국태용 교수님</div>
     """, unsafe_allow_html=True)
     
     # 사이드바 설정
