@@ -170,7 +170,7 @@ def main():
     st.markdown("""
         <style>
             .professor-title {
-                font-size: 10px;
+                font-size: 15px;
                 font-weight: bold;
                 color: white;
                 text-align: center;
