@@ -231,6 +231,8 @@ def main():
                     )
 
     st.header('1. Sensor')
+    sensor = st.botton('Sensor ON')
+    sensor = st.botton('Sensor OFF')
     if all_selected_files and st.button('Check'):
         all_good = True
         for file_path in all_selected_files:
