@@ -231,8 +231,8 @@ def main():
                     )
 
     st.header('1. Sensor')
-    st.botton('Sensor ON')
-    st.botton('Sensor OFF')
+    if st.botton('Sensor ON'):
+        st.write('센서가 켜졌습니다.')
     if all_selected_files and st.button('Check'):
         all_good = True
         for file_path in all_selected_files:
