@@ -152,8 +152,7 @@ def plot_data(df, title):
     st.pyplot(fig)
     
 def main():
-# 예제 GitHub Raw 이미지 URL
-    image_url = "https://github.com/Hahyobin/crois/blob/Hahyobin-patch-2/3팀.png"
+    image_url = "https://github.com/Hahyobin/crois/Hahyobin-patch-2/3팀.png"
     st.image(image_url, use_column_width=True)    
     st.markdown("""
         <style>
