@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>SMART WINDOW</title>
+</head>
+<body>
+    <h2>{{ degree_s }}</h2>
+    <h2>Rain: {{ rain }}   {{rain_s}}</h2>
+    <h2>Gas: {{ gas }}   {{gas_s}} </h2>
+    <h2>Humidity: {{ hum }}   {{hum_s}}</h2>
+    <h2>Temperature: {{ tem }}   {{tem_s}}</h2>
+    <h2>Dust density: {{ dust }}   {{dust_s}}</h2>
+
+    <h1>WINDOW OPEN CLOSE</h1>
+    <form action="/data" method="post">
+        <input type="submit" name="window" value="open">
+        <input type="submit" name="window" value="close">
+        <input type="submit" name="window" value="auto">
+    </form>
+
+    <h1>Time</h1>
+    <form action="/submit" method="post">
+        <label for="hhmm">hh:mm-hh:mm-window</label>
+        <p><input type="text" name="hhmm"></p>
+        <p><button type="submit">Submit</button></p>
+    </form>
+</body>
+</html>
+
+
