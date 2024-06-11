@@ -106,8 +106,9 @@ def data():
 
 @app.route('/submit', methods=['POST'])
 def submit_hour():
-    global start_time, end_time, hh1, mm1, hh2, mm2, window_book, hand_control
+    global start_time, end_time, hh1, mm1, hh2, mm2, window_book, hand_control, end
     hand_control = 0
+    end = 0
     try:
         time_input = request.form['hhmm']
         start_time, end_time, window_book = time_input.split("-")
@@ -148,7 +149,7 @@ def capture_and_detect():
     cv2.destroyAllWindows()
 
 def check_time_and_update_gpio():
-    global hh1, mm1, hh2, mm2, window_book, hand_control
+    global hh1, mm1, hh2, mm2, window_book, hand_control, end
 
     while True:
         time.sleep(0.1)
@@ -157,20 +158,37 @@ def check_time_and_update_gpio():
         real_minute = now.minute
         if hand_control == 0:
             if (hh1 * 100 + mm1) <= (hh2 * 100 + mm2):
-                if (hh1 <= real_hour <= hh2 and mm1 <= real_minute <= mm2 and window_book == '1'):
+                if ( real_hour == hh2 and real_minute == mm2):
+                    end = 2
+                if (hh1 <= real_hour <= hh2 and mm1 <= real_minute <= mm2 and window_book == '1' and end == 0):
                     GPIO.output(window23, 1)
                     GPIO.output(window24, 1)
-                elif (hh1 <= real_hour <= hh2 and mm1 <= real_minute <= mm2 and window_book == '0'):
+                elif (hh1 <= real_hour <= hh2 and mm1 <= real_minute <= mm2 and window_book == '0' and end == 0):
                     GPIO.output(window23, 1)
+                    GPIO.output(window24, 0)
+                elif (end == 2):
+                    GPIO.output(window23, 0)
                     GPIO.output(window24, 0)
             else:
-                if (hh1 <= real_hour <= hh2 + 24 and mm1 <= real_minute <= mm2 and window_book == '1'):
+                if (real_hour == 23 and real_minute == 59):
+                    end = 1
+                if (real_hour == hh2 and real_minute == mm2):
+                    end = 2
+                if (hh1 <= real_hour <= 23 and mm1 <=real_minute <= 59 and window_book == '1' and end == 0):
                     GPIO.output(window23, 1)
                     GPIO.output(window24, 1)
-                elif (hh1 <= real_hour <= hh2 + 24 and mm1 <= real_minute <= mm2 and window_book == '0'):
+                elif (hh1 <= real_hour <= 23 and hh1 <= real_minute <= 59 and window_book == '0' and end == 0):
                     GPIO.output(window23, 1)
                     GPIO.output(window24, 0)
-
+                if (real_hour <= hh2 and real_minute <= mm2 and window_book == '1' and end == 1):
+                    GPIO.output(window23, 1)
+                    GPIO.output(window24, 1)
+                elif (real_hour <= hh2 and real_minute <= mm2 and window_book == '0' and end == 1):
+                    GPIO.output(window23, 1)
+                    GPIO.output(window24, 0)
+                elif (end == 2):
+                    GPIO.output(window23, 0)
+                    GPIO.output(window24, 0)
 def update_sensor_data():
     global sensor_data, sensor_status
     while True:
